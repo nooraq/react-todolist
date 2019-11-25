@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import axios from 'axios'
 import './style.css'
 import TodoItem from './TodoItem'
 class TodoList extends Component {
@@ -20,19 +19,12 @@ class TodoList extends Component {
             className="input"
             value={this.state.inputValue}
             onChange={this.handleInputChange}
-            ref={input => {
-              this.input = input
-            }}
           />
           <button onClick={this.handleButtonClick.bind(this)}>提交</button>
         </div>
         <ul>{this.getItems()}</ul>
       </div>
     )
-  }
-
-  componentDidMount() {
-    axios.get('/api/todolist')
   }
 
   handleInputChange(e) {
@@ -65,6 +57,7 @@ class TodoList extends Component {
           content={item}
           index={index}
           deleteItem={this.handleItemDelete.bind(this)}
+          key={item}
         />
         // <li key={index} onClick={this.handleItemDelete.bind(this, index)}>
         //   {item}
